@@ -1,0 +1,369 @@
+---
+title: "Solution Of Exercices"
+author: "SAMO Marius"
+date: '2022-06-22'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# CHAPTER 2 : R Basics
+
+## EXERCICE 1 : The very basics
+
+$$1+2+3+...+n=\frac{n(n+1)}{2}$$
+
+### QUESTION 1
+
+```{r}
+ 
+n <- 100
+sum_integers_1 <- (n*(n+1))/2
+sum_integers_1
+
+
+```
+
+### QUESTION 2
+
+```{r}
+n <- 1000
+sum_integers <- (n*(n+1))/2
+sum_integers
+
+```
+
+### QUESTION 3
+
+**answer** : **seq** creates a list of numbers and **sum** adds them up.
+
+```{r}
+n <- 1000
+x <- seq(1, n)
+sum(x)
+```
+
+### QUESTION 4
+
+```{r}
+
+log10(sqrt(100))
+
+```
+
+### QUESTION 5
+
+**answer** : $log(exp(x)) = x$
+
+## EXERCICE 2 : Data types
+
+### QUESTION 1
+
+**answer** : The state name, the abbreviation of the state name, the state's region, and the state's population and total number of murders for 2010.
+
+```{r}
+library(dslabs)
+data(murders)
+str(murders)
+```
+
+### QUESTION 2
+
+```{r}
+names(murders)
+```
+
+### QUESTION 3
+
+```{r}
+a <- murders$state
+class(a)
+```
+
+### QUESTION 4
+
+```{r}
+b <- murders["state"]
+identical(a,b)
+```
+
+### QUESTION 5
+
+```{r}
+length(levels(murders$region))
+```
+
+### QUESTION 6
+
+```{r}
+table(murders$region)
+```
+
+## EXERCICE 3 : Vectors-Coercion
+
+### QUESTION 1
+
+```{r}
+temp <- c(35, 88, 42, 84, 81, 30)
+temp
+```
+
+### QUESTION 2
+
+```{r}
+city <- c("Beijing", "Lagos", "Paris", "Rio de Janeiro", "San Juan", "Toronto")
+city
+```
+
+### QUESTION 3
+
+```{r}
+names(temp) <- city
+temp
+```
+
+### QUESTION 4
+
+```{r}
+
+temp[1:3]
+
+```
+
+### QUESTION 5
+
+```{r}
+temp[c("Paris", "San Juan")]
+
+```
+
+### QUESTION 6
+
+```{r}
+12:73
+```
+
+### QUESTION 7
+
+```{r}
+seq(1,100,2)
+```
+
+### QUESTION 8
+
+```{r}
+seq(6,55,4/7)
+
+length(seq(6,55,4/7))
+```
+
+### QUESTION 9
+
+```{r}
+a <- seq(1, 10, 0.5)
+class(a)
+```
+
+### QUESTION 10
+
+```{r}
+a <- seq(1,10)
+class(a)
+```
+
+### QUESTION 11
+
+```{r}
+x <- c("1", "3", "5")
+x <- as.numeric(x)
+x
+```
+
+## EXERCICE 4 : Sorting
+
+### QUESTION 1
+
+```{r}
+pop <- murders$population
+pop <- sort(pop)
+pop[1:3]
+```
+
+### QUESTION 2
+
+```{r}
+order(murders$population)[1]
+```
+
+### QUESTION 3
+
+```{r}
+which.min(murders$population)
+```
+
+### QUESTION 4
+
+```{r}
+states <- murders$state
+states[51]
+```
+
+### QUESTION 5
+
+```{r}
+rank <- rank(murders$population)
+my_df <- data.frame(states, rank)
+my_df
+```
+
+### QUESTION 6
+
+```{r}
+ind <- order(murders$population)
+my_df$states <- my_df$states[ind]
+my_df$rank <- my_df$rank[ind]
+my_df
+```
+
+### QUESTION 7
+
+```{r}
+data("na_example")
+str(na_example)
+
+sum(is.na(na_example))
+```
+
+### QUESTION 8
+
+```{r}
+mean(na_example, na.rm = TRUE)
+```
+
+## EXERCICE 5 : Vectors arithmetics
+
+### QUESTION 1
+
+```{r}
+temp <- c(35, 88, 42, 84, 81, 30)
+city <- c("Beijing", "Lagos", "Paris", "Rio de Janeiro", 
+          "San Juan", "Toronto")
+city_temps <- data.frame(name = city, temperature = temp)
+
+city_temps["temperature_C"] = (city_temps$temperature-32)*(5/9)
+city_temps
+```
+
+### QUESTION 2
+
+$$ 1+\frac{1}{2^2}+\frac{1}{3^2}+...+\frac{1}{100^2} \approx  \frac{\pi^2}{6} $$
+
+```{r}
+
+sum(1/(seq(1,100)^2))
+
+```
+
+### QUESTION 3
+
+```{r}
+
+murder_rate <- murders$total*100000/murders$population
+mean(murder_rate)
+
+```
+
+## EXERCICE 6 : Indexing
+
+### QUESTION 1
+
+```{r}
+murder_rate <- murders$total*100000/murders$population
+low <- murder_rate < 1
+low
+```
+
+### QUESTION 2
+
+```{r}
+ind <- which(low)
+ind
+```
+
+### QUESTION 3
+
+```{r}
+
+murders$state[ind]
+
+```
+
+### QUESTION 4
+
+```{r}
+low <- low &  murders$region == "Northeast"
+murders$state[which(low)]
+
+```
+
+### QUESTION 5
+
+```{r}
+
+sum(length(murder_rate < mean(murder_rate)))
+
+```
+
+### QUESTION 6
+
+```{r}
+
+ind <- match(c("AK", "MI", "IA"), murders$abb)
+
+murders$state[ind]
+```
+
+### QUESTION 7
+
+```{r}
+
+abb <- c("MA","ME", "MI", "MO", "MU")
+
+abb[abb %in% murders$abb]
+
+```
+
+### QUESTION 8
+
+```{r}
+abb[ !(abb %in% murders$abb)]
+
+```
+
+## EXERCICE 7 : Plot
+
+### QUESTION 1
+
+```{r}
+population_in_millions <- log10(murders$population/10^6)
+total_gun_murders <- log10(murders$total)
+
+plot(population_in_millions, total_gun_murders)
+
+
+```
+
+### QUESTION 2
+
+```{r}
+
+with(murders, hist(population))
+```
+
+### QUESTION 3
+
+```{r}
+with(murders, boxplot(population ~ region))
+```
