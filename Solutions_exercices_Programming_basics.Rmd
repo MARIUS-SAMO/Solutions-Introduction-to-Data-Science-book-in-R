@@ -1,0 +1,172 @@
+---
+title: "Solution_chapter3"
+author: "SAMO KAMGA MARIUS BARTEL"
+date: "25/06/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## EXERCICE 5 : Functions
+
+### QUESTION 1
+
+**answer** : this functions return if all the entry of a vector are positive or not
+
+```{r}
+x <- c(1,2,-3,4)
+
+if(all(x>0)){
+  print("All Postives")
+} else{
+  print("Not all positives")
+}
+```
+
+### QUESTION 2
+
+**answer** : d
+
+
+### QUESTION 3
+
+```{r}
+my_function <- function(vec)
+{
+  ind <- which(nchar(vec) > 8)
+  res <- vec[ind]
+  return(res)
+}
+
+new_names <- my_function(murders$state)
+new_names
+```
+### QUESTION 3
+
+```{r}
+
+sum_n <- function(n)
+{
+  res <- 1:n
+  res <- sum(res)
+  return(res)
+}
+  
+sum_n(5000)  
+```
+### QUESTION 4
+
+```{r}
+altman_plot <- function(x,y)
+{
+  plot(x = x+y, y = x-y, xlab = "sum", ylab = "difference")
+}
+
+x <- sample(1:100, 10)
+y <- sample(1:100, 10)
+
+altman_plot(x,y)
+
+```
+
+### QUESTION 5
+
+**answer** : x does not change
+
+```{r}
+x <- 3
+my_func <- function(y){
+  x <- 5
+  y+5
+}
+x
+```
+
+### QUESTION 6
+
+```{r}
+compute_s_n <- function(n)
+{
+  res <- 1:n
+  res <- res^2
+  res <- sum(res)
+  return(res)
+}
+
+compute_s_n(10)
+```
+### QUESTION 8
+
+```{r}
+s_n <- vector("numeric", 25)
+n <- 25
+for (i in 1:n) {
+  s_n[i] <- compute_s_n(i)
+}
+
+s_n
+```
+
+### QUESTION 9
+
+```{r}
+sapply(1:n, compute_s_n)
+```
+### QUESTION 10
+
+```{r}
+purrr::map_dbl(1:n, .f = compute_s_n)
+```
+### QUESTION 11
+
+```{r}
+
+plot(x = 1:25, y = sapply(1:25, compute_s_n), xlab = "n", ylab = "Sn")
+```
+
+
+### QUESTION 12
+
+
+$$1^2+2^2+3^2+ ...+n^2 = \frac{n(n+1)(2n+1)}{6} $$
+```{r}
+
+S_n <- function(n)
+{
+  return(n*(n+1)*(2*n+1)/6)
+}
+
+identical(compute_s_n(10), S_n(10))
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
