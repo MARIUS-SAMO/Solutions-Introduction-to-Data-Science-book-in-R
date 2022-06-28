@@ -1,0 +1,34 @@
+---
+title: "Solutions_chapter4"
+author: "SAMO KAMGA MARIUS BARTEL"
+date: "27/06/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## EXERCICE 1 : Tidy data
+
+### QUESTION 1
+
+```{r}
+
+```
+
+### QUESTION 2
+
+**answer** : a-) ChickWeight is not tidy: each chick has more than one row.
+
+```{r}
+length(unique(ChickWeight$weight)) == nrow(ChickWeight)
+
+```
+### QUESTION 3
+
+**answer** : c-) BOD is tidy: each row is an observation with two values (time and demand)
+
+### QUESTION 4
+
+**answer** : Formaldehyde, 
