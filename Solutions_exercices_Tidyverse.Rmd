@@ -32,3 +32,63 @@ length(unique(ChickWeight$weight)) == nrow(ChickWeight)
 ### QUESTION 4
 
 **answer** : Formaldehyde, 
+
+
+## EXERCICE 2 : Manipulating data frames
+
+### QUESTION 1
+
+
+```{r}
+library(dplyr)
+library(dslabs)
+data(murders)
+
+```
+
+
+```{r}
+
+murders <- mutate(murders, rate = total / population * 100000)
+
+```
+
+
+### QUESTION 2
+
+
+```{r}
+murders <- mutate(murders, rank = rank(-rate))
+```
+
+
+### QUESTION 3
+
+```{r}
+
+select(murders, state, abb) %>% head()
+```
+
+### QUESTION 4
+
+```{r}
+filter(murders, rank %in% 1:5) %>% head()
+```
+
+
+### QUESTION 5
+
+```{r}
+
+no_south <- filter(murders, region != "South")
+nrow(no_south)
+```
+
+
+
+
+
+
+
+
+
