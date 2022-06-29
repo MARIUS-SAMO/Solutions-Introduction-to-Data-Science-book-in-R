@@ -84,6 +84,67 @@ no_south <- filter(murders, region != "South")
 nrow(no_south)
 ```
 
+### QUESTION 6
+
+
+```{r}
+
+murders_nw <- filter(murders, region %in% c("Northeast", "West"))
+
+head(murders_nw)
+```
+
+
+
+### QUESTION 7
+
+```{r}
+
+my_states <- filter(murders,  region %in% c("Northeast", "West"), rate <1 ) 
+select(my_states, state, rate, rank)
+
+```
+
+
+## EXERCICE 3 : The pipe
+
+### QUESTION 1
+
+
+```{r}
+
+ murders %>%
+  mutate(rate =  total / population * 100000, 
+                  rank = rank(-rate)) %>%
+  filter(region %in% c("Northeast", "West"), 
+                      rate < 1) %>%
+  select(state, rate, rank)
+
+
+```
+
+
+### QUESTION 2
+
+
+```{r}
+data("murders")
+my_states <- murders %>%
+  mutate(rate =  total / population * 100000, 
+                  rank = rank(-rate)) %>%
+  filter(region %in% c("Northeast", "West"), 
+                      rate < 1) %>%
+  select(state, rate, rank)
+
+my_states %>% head()
+```
+
+
+
+
+
+
+
 
 
 
