@@ -140,6 +140,90 @@ my_states %>% head()
 ```
 
 
+## EXERCICE 3 : Manipulating data frames
+
+```{r}
+library(NHANES)
+data(NHANES)
+```
+
+### QUESTION 1
+
+```{r}
+
+ref <- NHANES %>%
+  filter(AgeDecade == " 20-29") %>%
+  summarise(average = mean(BPSysAve, na.rm = TRUE), sd = sd(BPSysAve, na.rm = TRUE))
+
+ref
+```
+
+### QUESTION 2
+
+```{r}
+ref_avg <- ref %>%
+  pull(average)
+
+ref_avg
+```
+
+### QUESTION 3
+
+```{r}
+NHANES %>%
+  filter(AgeDecade == " 20-29") %>%
+  summarise(min = min(BPSysAve, na.rm = TRUE), max = max(BPSysAve, na.rm = TRUE))
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
