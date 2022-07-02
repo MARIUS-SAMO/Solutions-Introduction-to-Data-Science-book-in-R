@@ -175,9 +175,43 @@ NHANES %>%
   summarise(min = min(BPSysAve, na.rm = TRUE), max = max(BPSysAve, na.rm = TRUE))
 ```
 
+### QUESTION 4
 
+```{r}
+NHANES %>%
+  filter(Gender == "female") %>%
+  group_by(AgeDecade) %>%
+  summarise(average = mean(BPSysAve, na.rm = TRUE), sd = sd(BPSysAve, na.rm = TRUE))
+```
 
+### QUESTION 5
 
+```{r}
+NHANES %>%
+  filter(Gender == "male") %>%
+  group_by(AgeDecade) %>%
+  summarise(average = mean(BPSysAve, na.rm = TRUE), sd = sd(BPSysAve, na.rm = TRUE))
+```
+
+### QUESTION 6
+
+```{r}
+
+NHANES %>%
+  group_by(AgeDecade, Gender) %>%
+  summarise(average = mean(BPSysAve, na.rm = TRUE), sd = sd(BPSysAve, na.rm = TRUE))
+
+```
+
+### QUESTION 7
+
+```{r}
+NHANES %>%
+  filter(AgeDecade == " 40-49") %>%
+  group_by(Race1) %>%
+  summarise(average = mean(BPSysAve, na.rm = TRUE)) %>%
+    arrange(average)
+```
 
 
 
