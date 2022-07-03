@@ -213,16 +213,45 @@ NHANES %>%
     arrange(average)
 ```
 
+## EXERCICE 3 : Tidyverse conditionals
+
+### QUESTION 1
+
+**answer** : b-) murders is in tidy format and is stored in a data frame.
+
+```{r}
+data("murders")
+head(murders)
+class(murders)
+```
 
 
 
+### QUESTION 2
 
+```{r}
+murders_tibble <- as_tibble(murders)
+class(murders_tibble)
+```
+### QUESTION 3
 
+```{r}
+murders_tibble_gb <- group_by(murders_tibble, region)
+class(murders_tibble_gb)
+```
 
+### QUESTION 4
 
+```{r}
 
+murders %>%
+  .$population %>%
+  log() %>%
+  mean() %>%
+  exp()
+ 
 
-
+```
 
 
 
