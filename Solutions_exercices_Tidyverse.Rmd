@@ -213,7 +213,7 @@ NHANES %>%
     arrange(average)
 ```
 
-## EXERCICE 3 : Tidyverse conditionals
+## EXERCICE 3 : Tidyverse conditionals/dot_operator
 
 ### QUESTION 1
 
