@@ -1,0 +1,26 @@
+---
+title: "GGPLOT 2"
+author: "SAMO KAMGA MARIUS BARTEL"
+date: "20/04/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## EXERCICE 
+
+### QUESTION 1
+
+```{r}
+
+path <- system.file("extdata", package = "dslabs")
+files <- list.files(path)
+files
+
+```
+
+
+
+
