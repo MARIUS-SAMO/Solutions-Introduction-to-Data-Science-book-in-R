@@ -21,9 +21,61 @@ files
 
 ```
 
+Just keep .csv files
+
+```{r}
+files <- files[c(-1,-4, -8)]
+files
+```
 
 ```{r}
 
+for (i in 1:length(files)) {
+  print(read.csv(file = file.path(path, files[i])))
+  
+}
+
+
 ```
+
+### QUESTION 2
+
+i don't get any warning with the olive dataset
+
+```{r}
+dat <- read.csv(file = file.path(path, files[length(files)]))
+dat
+```
+
+
+### QUESTION 3
+
+
+```{r}
+names(dat)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
