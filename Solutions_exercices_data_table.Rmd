@@ -1,0 +1,95 @@
+---
+title: "DATA TABLE"
+author: "SAMO KAMGA MARIUS BARTEL"
+date: "27/07/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## EXERCICE 
+
+### QUESTION 1
+
+```{r}
+
+library(data.table)
+library(dslabs)
+data(murders)
+murders <- setDT(murders)
+```
+
+
+
+```{r}
+murders <- murders[, rate := (total/population)*100000]
+murders
+```
+
+
+### QUESTION 2
+
+```{r}
+murders <- murders[, rank := rank(-rate)]
+murders
+```
+
+### QUESTION 3
+
+```{r}
+murders[, .(state, abb)]
+
+```
+
+### QUESTION 4
+
+```{r}
+
+murders[rank %in% 1:5]
+
+```
+
+### QUESTION 5
+
+```{r}
+no_south <- murders[region != "South"]
+nrow(no_south)
+```
+
+### QUESTION 6
+
+```{r}
+murders_nw <- murders[region %in% c("Northeast", "West")]
+nrow(murders_nw)
+```
+
+### QUESTION 7
+
+```{r}
+
+my_states <- murders_nw[rate < 1, .(state, rate, rank)]
+my_states
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
