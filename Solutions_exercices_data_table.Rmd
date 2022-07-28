@@ -9,7 +9,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## EXERCICE 
+## EXERCICE 1
 
 ### QUESTION 1
 
@@ -74,11 +74,50 @@ my_states
 ```
 
 
+## EXERCICE 2
+
+### QUESTION 1
+
+```{r}
+library(NHANES)
+data(NHANES)
+
+NHANES <- setDT(NHANES)
+```
+
+```{r}
+ref <- NHANES[(AgeDecade == " 20-29") & (Gender =="female"), .(mean = mean(BPSysAve,na.rm = TRUE), sd = sd(BPSysAve, na.rm = TRUE))]
+ref
+```
+
+### QUESTION 2
+
+```{r}
+NHANES[(AgeDecade == " 20-29") & (Gender =="female"), .(min = min(BPSysAve,na.rm = TRUE), max = max(BPSysAve, na.rm = TRUE))]
+```
 
 
+### QUESTION 3
 
+```{r}
+NHANES[Gender =="female", .(mean = mean(BPSysAve,na.rm = TRUE), sd = sd(BPSysAve, na.rm = TRUE)), by = AgeDecade]
+```
 
+### QUESTION 4
 
+```{r}
+NHANES[Gender =="male", .(mean = mean(BPSysAve,na.rm = TRUE), sd = sd(BPSysAve, na.rm = TRUE)), by = AgeDecade]
+
+```
+
+### QUESTION 5
+
+```{r}
+
+res <- NHANES[(AgeDecade == " 40-49") & (Gender =="male"), .(sb = sum(BPSysAve)), by= Race1]
+res[ order(sb, decreasing = TRUE)]
+
+```
 
 
 
