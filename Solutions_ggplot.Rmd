@@ -9,3 +9,147 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+## EXERCICE 1
+
+### QUESTION 1
+
+```{r}
+library(dplyr)
+library(ggplot2)
+library(dslabs)
+data(heights)
+data(murders)
+```
+
+
+```{r}
+p <- murders %>% ggplot()
+class(p)
+```
+### QUESTION 2
+
+**answer** : b-) A blank slate plot
+
+```{r}
+print(p)
+```
+
+
+
+### QUESTION 3
+
+
+```{r}
+p <- heights %>%
+  ggplot()
+```
+
+
+### QUESTION 4
+
+```{r}
+class(p)
+```
+
+
+### QUESTION 5
+
+**answer** : c-) total and population
+
+### QUESTION 6
+
+```{r}
+
+murders %>% ggplot(aes(x = population, y = total)) +
+  geom_point()
+
+```
+### QUESTION 7
+
+```{r}
+murders %>% ggplot(aes(total, population)) +
+  geom_point()
+```
+
+
+### QUESTION 8
+
+**answer** : a-) We need to map a character to each point through the label argument in aes.
+
+
+### QUESTION 9
+
+```{r}
+murders %>% ggplot(aes(population, total)) + geom_label(aes(label = abb))
+
+
+```
+
+
+### QUESTION 10
+
+**answer** : d-) Because we want all colors to be blue, we do not need to map colors, just use the color argument in geom_label.
+
+### QUESTION 11
+
+```{r}
+
+murders %>% ggplot(aes(population, total)) + geom_label(aes(label = abb), color = "blue")
+```
+
+### QUESTION 12
+
+**answer** : b-) Because each label needs a different color we map the colors through the color argument of aes .
+
+### QUESTION 13
+
+```{r}
+murders %>% ggplot(aes(population, total)) + geom_label(aes(label = abb, color = region))
+```
+
+### QUESTION 14
+
+```{r}
+p <- murders %>% 
+  ggplot(aes(population, total, label = abb, color = region)) +
+  geom_label() 
+
+p + scale_x_log10()
+```
+
+
+### QUESTION 15
+
+```{r}
+p <- murders %>% 
+  ggplot(aes(population, total, label = abb, color = region)) +
+  geom_label() 
+
+p <- p + scale_x_log10() + scale_y_log10()
+
+p
+```
+
+### QUESTION 16
+
+```{r}
+p + ggtitle(label = "Gun murder data")
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
